@@ -16,10 +16,7 @@ body {
     padding: 20px;
 }
 
-.app__header > h1 {
-    color: #fc3c3c;
-    font-size: 2rem;
-}
+
 
 .app__left {
     flex: 0.9;
@@ -34,6 +31,11 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.app__header > h1 {
+    color: #fc3c3c;
+    font-size: 2rem;
 }
 
 .app_stats {
