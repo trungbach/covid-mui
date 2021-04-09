@@ -1,11 +1,10 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { FormControl, Select, MenuItem, Card, CardContent, Grid } from '@material-ui/core';
-// import CountUp from 'react-countup'; 
-import InfoBox from './InfoBox';
-import LineGraph from './LineGraph';
-import Table from './Table';
-import Map from './Map';
+import { FormControl, Select, MenuItem, Card, CardContent } from '@material-ui/core';
+import InfoBox from './components/InfoBox';
+import LineGraph from './components/LineGraph';
+import Table from './components/Table';
+import Map from './components/Map';
 import { prettyPrintStat } from './util';
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
     const [countryInfo, setCountryInfo] = useState({});
     const [tableData, setTableData] = useState([]);
     const [mapZoom, setMapZoom] = useState(2);
-    const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+    const [mapCenter, setMapCenter] = useState([34.80746, -40.4796 ]);
     const [mapCountries, setMapCountries] = useState([]);
     const [casesType, setCasesType] = useState('cases');
 
@@ -51,7 +50,7 @@ function App() {
             .then(data => {
                 setCountry(country);
                 setCountryInfo(data);
-                setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+                if(country !== 'worldwide') setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
                 setMapZoom(6);
             })
     }
@@ -74,17 +73,17 @@ function App() {
                     <InfoBox title = 'Coronavirus cases'
                             isRed active = { casesType === 'cases' }
                             casesType = { casesType }
-                            onClick = {(e) => setCasesType('cases')}
+                            onClick = {() => setCasesType('cases')}
                             cases = { prettyPrintStat(countryInfo.todayCases) }
                             total = { prettyPrintStat(countryInfo.cases) }/> 
                     <InfoBox title = 'Recovered'
                             active = { casesType === 'recovered' }
-                            onClick = {(e) => setCasesType('recovered')}
+                            onClick = {() => setCasesType('recovered')}
                             cases = { prettyPrintStat(countryInfo.todayRecovered) }
                             total = { prettyPrintStat(countryInfo.recovered) }/> 
                     <InfoBox title = 'Deaths'
                             isRed active = { casesType === 'deaths' }
-                            onClick = {(e) => setCasesType('deaths')}
+                            onClick = {() => setCasesType('deaths')}
                             cases = { prettyPrintStat(countryInfo.todayDeaths) }
                             total = { prettyPrintStat(countryInfo.deaths) }/> 
                 </div>

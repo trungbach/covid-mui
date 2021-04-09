@@ -1,6 +1,6 @@
 import React from 'react';
-import './Table.css';
-import { sortData } from './util';
+import '../asset/css/Table.css';
+import { sortData } from '../util';
 import numeral from 'numeral';
 
 function Table({countries}) {

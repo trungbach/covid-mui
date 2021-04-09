@@ -1,19 +1,19 @@
 import numeral from 'numeral';
 import React from 'react';
-import { Circle, Popup,CircleMarker } from 'react-leaflet';
+import { Circle, Popup, CircleMarker } from 'react-leaflet';
 
 const casesTypeColors = {
     cases: {
         hex: "#CC1034",
         rgb: "rgb(204, 16, 52)",
         half_op: "rgba(204, 16, 52, 0.5)",
-        multiplier: 800,
+        multiplier: 600,
       },
       recovered: {
         hex: "#7dd71d",
         rgb: "rgb(125, 215, 29)",
         half_op: "rgba(125, 215, 29, 0.5)",
-        multiplier: 1200,   
+        multiplier: 800,   
       },
       deaths: {
         hex: "#fb4443",
@@ -34,14 +34,16 @@ export const sortData = (data) => {
     });
     return sortedData; 
 }
+
 // Draw circle  on the map with interactive tooltip
 export const showDataOnMap = (data, casesType) => 
+
      data.map((country) => (
         <Circle 
             center={[country.countryInfo.lat, country.countryInfo.long]}
             fillOpacity={0.4}
-            color={casesTypeColors[casesType].hex}
-            fillColor={casesTypeColors[casesType].hex}
+            color={casesTypeColors[casesType].rgb}
+            fillColor={casesTypeColors[casesType].rgb}
             radius={
                  Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
             }

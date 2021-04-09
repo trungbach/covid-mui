@@ -1,20 +1,20 @@
 import React from 'react';
-import './Map.css';
-import { MapContainer, TileLayer, Marker, Popup,Map as LeafletMap,Circle, CircleMarker } from 'react-leaflet';
-import { showDataOnMap } from './util';
+import '../asset/css/Map.css';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { showDataOnMap } from '../util';
 import L from 'leaflet';
-import marker from './img/marker.png';
-import leafShadow from './img/leaf-shadow.png';
+import marker from '../asset/img/marker.png';
 
 const iconPerson = new L.Icon({
     iconUrl: marker,
-    iconSize: new L.Point(30, 40),
-    className: 'leaflet-div-icon',
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76]
+    iconAnchor:   [22, 94],
+    popupAnchor:  [-3, -76],
+    iconSize: new L.Point(38, 95),
 });
 
 function Map({countries, casesType, center, zoom}) {
+
+    console.log(center);
     return (
         <div className='map'>
             <MapContainer center={center} zoom={zoom}  className="markercluster-map">
@@ -29,7 +29,6 @@ function Map({countries, casesType, center, zoom}) {
                 </Marker>
                 {showDataOnMap(countries, casesType)}
             </MapContainer>
-           
         </div>
     );
 }

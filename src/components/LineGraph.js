@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Bar, Line} from 'react-chartjs-2';
-import './LineGraph.css';
+import '../asset/css/LineGraph.css';
 import numeral from 'numeral';
 
 const options = {
